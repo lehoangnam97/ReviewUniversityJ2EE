@@ -3,7 +3,7 @@ package com.pmcl.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "Reply")
 public class Reply {
 	@Id
 	private String id;
@@ -19,8 +19,7 @@ public class Reply {
 		this.type = type;
 		this.context = context;
 		this.createAt = createAt;
-	}
-
+	} 
 	public void setReplyWithoutId(Reply reply) {
 		if (reply.reviewId != null)
 			this.reviewId = reply.reviewId;

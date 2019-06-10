@@ -2,13 +2,22 @@ package com.pmcl.model;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "University")
 public class University {
 	@Id
-	private String id;
+	private String  id;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private String department;
 	private String location;
 	private String logo;

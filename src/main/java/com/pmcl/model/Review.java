@@ -9,6 +9,7 @@ import java.util.List;
 public class Review {
 	@Id
 	private String id;
+
 	private String universityId;
 	private String role;
 	private String type;
@@ -30,6 +31,13 @@ public class Review {
 		this.numberOfReplies = numberOfReplies;
 	}
 
+	public String getId() {
+		return id;
+	} 
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 
 	public void setReviewWithoutId(Review review) {

@@ -2,6 +2,7 @@ package com.pmcl.controller;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.pmcl.exception.IdNotFoundException;
 import com.pmcl.exception.IdNotValidException;
 import com.pmcl.model.University;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UniversityController {
 	@Autowired
@@ -33,8 +35,8 @@ public class UniversityController {
 	public University getUniversityById(@PathVariable String id) {
 		if (!ObjectId.isValid(id))
 			throw new IdNotValidException(id);
-		
-		University result = universityService.findById(new ObjectId(id)); 
+
+		University result = universityService.findById(new ObjectId(id));
 		if (result != null) {
 			result.setReviews(reviewService.findByUniversityId(id));
 			return result;
@@ -66,5 +68,5 @@ public class UniversityController {
 		} else
 			throw new IdNotFoundException(id);
 
-	} 
+	}
 }

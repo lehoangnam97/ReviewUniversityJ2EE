@@ -33,6 +33,10 @@ public class ReviewService {
 	public List<Review> findByUniversityId(String universityId) {
 		return reviewRepository.findByUniversityId(universityId);
 	}
+	
+	public List<Review> getRecentReviews() {
+		return reviewRepository.findAll();
+	}
 
 	public Review findById(ObjectId id) {
 		return reviewRepository.findByObjectId(id);

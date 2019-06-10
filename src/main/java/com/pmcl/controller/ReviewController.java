@@ -6,6 +6,7 @@ import com.pmcl.exception.IdNotValidException;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,19 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pmcl.model.Review;
 import com.pmcl.service.ReplyService;
 import com.pmcl.service.ReviewService;
-
+ 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	@Autowired
 	private ReplyService replyService;
-
+	@CrossOrigin
 	@GetMapping("/api/Reviews")
 	public List<Review> getReviews() {
 		return reviewService.getAll();
 	}
-
+	@CrossOrigin
 	@GetMapping("/api/Reviews/{id}")
 	public Review getReviewById(@PathVariable String id) {
 		if (!ObjectId.isValid(id))
@@ -41,12 +43,18 @@ public class ReviewController {
 		} else
 			throw new IdNotFoundException(id);
 	}
-
+	@CrossOrigin
+	@GetMapping("/api/Reviews/newest")
+	public List<Review> getRecentReviews() {
+		return reviewService.getAll();
+	}
+	@CrossOrigin
 	@PostMapping("/api/Reviews/")
 	public String post(@RequestBody Review review) {
+		System.out.print("Chui vao Day");
 		return "Create successfully : " + reviewService.create(review).toString();
 	}
-
+	@CrossOrigin
 	@PutMapping("/api/Reviews/{id}")
 	public String putReview(@PathVariable String id, @RequestBody Review review) {
 		if (!ObjectId.isValid(id))
@@ -56,7 +64,7 @@ public class ReviewController {
 		} else
 			throw new IdNotFoundException(id);
 	}
-
+	@CrossOrigin
 	@DeleteMapping("/api/Reviews/{id}")
 	public String putReview(@PathVariable String id) {
 		if (!ObjectId.isValid(id))

@@ -23,6 +23,7 @@ public class UniversityService {
 	}
 
 	public List<University> getAll() {
+		
 		return universityRepository.findAll();
 	}
 
