@@ -44,17 +44,17 @@ public class UniversityController {
 			throw new IdNotFoundException(id);
 	}
 
-	@PostMapping("/api/Universities/")
-	public String postUniversity(@RequestBody University university) {
-		return "Create successfully : " + universityService.create(university).toString();
+	@PostMapping("/api/Universities")
+	public University postUniversity(@RequestBody University university) {
+		return universityService.create(university);
 	}
 
 	@PutMapping("/api/Universities/{id}")
-	public String putUniversity(@PathVariable String id, @RequestBody University university) {
+	public University putUniversity(@PathVariable String id, @RequestBody University university) {
 		if (!ObjectId.isValid(id))
 			throw new IdNotValidException(id);
 		if (universityService.findById(new ObjectId(id)) != null) {
-			return "Update successfully : " + universityService.update(new ObjectId(id), university).toString();
+			return universityService.update(new ObjectId(id), university);
 		} else
 			throw new IdNotFoundException(id);
 	}

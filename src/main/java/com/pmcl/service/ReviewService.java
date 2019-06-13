@@ -15,9 +15,7 @@ public class ReviewService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
-	public Review create(Review review) {
-		review.setNumberOfReplies(0); 
-		review.setCreateAt(Helper.getCurrentTimeStamp());
+	public Review create(Review review) { 
 		return reviewRepository.save(review);
 	}
 
